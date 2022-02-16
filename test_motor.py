@@ -13,9 +13,15 @@ port = serial.Serial(port='/dev/ttyACM0',
 		     parity=serial.PARITY_NONE,
 		     timeout = .1,
              bytesize=serial.EIGHTBITS)
-             
+'''	     
+port2 = serial.Serial(port='/dev/ttyACM', 
+		     baudrate=11520, 
+		     parity=serial.PARITY_NONE,
+		     timeout = .1,
+             bytesize=serial.EIGHTBITS)
+'''            
 while 1 == 1:
-    current = 3000
+    current = -30000
     packet = pack(current)
     port.write(packet)
     port.flush()

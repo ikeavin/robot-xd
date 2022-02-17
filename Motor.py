@@ -63,5 +63,3 @@ class VESCMotors:
             self.leftPort.flush()
             self.rightPort.flush()
         self.zeroCurrent()
-
-    driveForward(10)

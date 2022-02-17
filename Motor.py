@@ -21,7 +21,7 @@ class VESCMotors:
                 bytesize=serial.EIGHTBITS)
 
     #Convert current into bytes that can be transmitted to the VESC             
-    def pack(value) -> bytes:
+    def pack(self, value) -> bytes:
         message = pyvesc.SetCurrent(value)
         packet = pyvesc.encode(message)
         return packet

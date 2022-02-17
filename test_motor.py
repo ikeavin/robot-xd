@@ -26,8 +26,8 @@ def pack(value) -> bytes:
 
 #Drive forward for specified amount of seconds
 def driveForward(seconds):
-    endTime = time.time
-    while time.time < endTime + seconds:
+    endTime = time.time()
+    while time.time() < endTime + seconds:
         leftCurrent = -30000
         rightCurrent = -leftCurrent
         leftPacket = pack(leftCurrent)

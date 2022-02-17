@@ -1,40 +1,6 @@
-import pyvesc
-import time
-import serial
+import Motor
 
-#Left side motors
-#Move forward with negative current
-leftPort = serial.Serial(port='/dev/ttyACM0', 
-		     baudrate=11520, 
-		     parity=serial.PARITY_NONE,
-		     timeout = .1,
-             bytesize=serial.EIGHTBITS)
-    
-#Right side motors
-#Move forward with positive current
-rightPort = serial.Serial(port='/dev/ttyACM1', 
-		     baudrate=11520, 
-		     parity=serial.PARITY_NONE,
-		     timeout = .1,
-             bytesize=serial.EIGHTBITS)
+motor = Motor()
+motor.driveForward(5)
+motor.driveBackward(5)
 
-#Convert current into bytes that can be transmitted to the VESC             
-def pack(value) -> bytes:
-    message = pyvesc.SetCurrent(value)
-    packet = pyvesc.encode(message)
-    return packet
-
-#Drive forward for specified amount of seconds
-def driveForward(seconds):
-    endTime = time.time()
-    while time.time() < endTime + seconds:
-        leftCurrent = -30000
-        rightCurrent = -leftCurrent
-        leftPacket = pack(leftCurrent)
-        rightPacket = pack(rightCurrent)
-        leftPort.write(leftPacket)
-        rightPort.write(rightPacket)
-        leftPort.flush()
-        rightPort.flush()
-            
-driveForward(10)

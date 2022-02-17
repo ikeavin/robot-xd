@@ -41,7 +41,7 @@ class VESCMotors:
         endTime = time.time()
         while time.time() < endTime + seconds:
             leftCurrent = -30000
-            rightCurrent = -leftCurrent
+            rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)
@@ -55,7 +55,7 @@ class VESCMotors:
         endTime = time.time()
         while time.time() < endTime + seconds:
             leftCurrent = 30000
-            rightCurrent = -leftCurrent
+            rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)

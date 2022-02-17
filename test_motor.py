@@ -1,6 +1,6 @@
-from Motor import Motor
+from Motor import VESCMotors
 
-motor = Motor()
+motor = VESCMotors()
 motor.driveForward(5)
 motor.driveBackward(5)
 

@@ -3,7 +3,6 @@ import time
 import serial
 
 class VESCMotors:
-
     def __init__(self) -> None:
         #Left side motors
         #Move forward with negative current

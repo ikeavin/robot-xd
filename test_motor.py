@@ -1,4 +1,4 @@
-import Motor
+from Motor import Motor
 
 motor = Motor()
 motor.driveForward(5)

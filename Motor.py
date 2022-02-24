@@ -35,12 +35,23 @@ class VESCMotors:
         self.rightPort.write(rightPacket)
         self.leftPort.flush()
         self.rightPort.flush()
+
+    def zeroCurrentForSeconds(self, seconds):     
+        endTime = time.time()
+        while time.time() < endTime + seconds:
+            leftPacket = self.pack(0)
+            rightPacket = self.pack(0)
+            self.leftPort.write(leftPacket)
+            self.rightPort.write(rightPacket)
+            self.leftPort.flush()
+            self.rightPort.flush()
+        self.zeroCurrent()
         
     #Drive forward for specified amount of seconds
     def driveForward(self, seconds):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = -30000
+            leftCurrent = -80000
             rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
@@ -50,12 +61,40 @@ class VESCMotors:
             self.rightPort.flush()
         self.zeroCurrent()
 
-
+    #Drive backward for specified amount of seconds
     def driveBackward(self, seconds):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = 30000
+            leftCurrent = 80000
             rightCurrent = -1 * leftCurrent
+            leftPacket = self.pack(leftCurrent)
+            rightPacket = self.pack(rightCurrent)
+            self.leftPort.write(leftPacket)
+            self.rightPort.write(rightPacket)
+            self.leftPort.flush()
+            self.rightPort.flush()
+        self.zeroCurrent()
+
+    #Drive right for specified amount of seconds
+    def driveRight(self, seconds):
+        endTime = time.time()
+        while time.time() < endTime + seconds:
+            leftCurrent = 80000
+            rightCurrent = 60000
+            leftPacket = self.pack(leftCurrent)
+            rightPacket = self.pack(rightCurrent)
+            self.leftPort.write(leftPacket)
+            self.rightPort.write(rightPacket)
+            self.leftPort.flush()
+            self.rightPort.flush()
+        self.zeroCurrent()
+
+    #Drive left for specified amount of seconds
+    def driveLeft(self, seconds):
+        endTime = time.time()
+        while time.time() < endTime + seconds:
+            leftCurrent = -60000
+            rightCurrent = -80000
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)

@@ -51,7 +51,7 @@ class VESCMotors:
     def driveForward(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = -power
+            leftCurrent = -int(power)
             rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
@@ -65,7 +65,7 @@ class VESCMotors:
     def driveBackward(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = power
+            leftCurrent = int(power)
             rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
@@ -79,8 +79,8 @@ class VESCMotors:
     def driveRight(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = power * .75
-            rightCurrent = power
+            leftCurrent = int(power * .75)
+            rightCurrent = int(power)
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)
@@ -93,8 +93,8 @@ class VESCMotors:
     def driveLeft(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = -(power * .75)
-            rightCurrent = -power
+            leftCurrent = int(-(power * .75))
+            rightCurrent = int(-power)
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)

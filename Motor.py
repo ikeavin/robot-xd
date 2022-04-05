@@ -102,3 +102,46 @@ class VESCMotors:
             self.leftPort.flush()
             self.rightPort.flush()
         self.zeroCurrent()
+
+    def packetForward(self, power):
+        leftCurrent = -int(power)
+        rightCurrent = -1 * leftCurrent
+        leftPacket = self.pack(leftCurrent)
+        rightPacket = self.pack(rightCurrent)
+        self.leftPort.write(leftPacket)
+        self.rightPort.write(rightPacket)
+        self.leftPort.flush()
+        self.rightPort.flush()
+
+    #Drive backward for specified amount of seconds
+    def packetBackward(self, power):
+        leftCurrent = int(power)
+        rightCurrent = -1 * leftCurrent
+        leftPacket = self.pack(leftCurrent)
+        rightPacket = self.pack(rightCurrent)
+        self.leftPort.write(leftPacket)
+        self.rightPort.write(rightPacket)
+        self.leftPort.flush()
+        self.rightPort.flush()
+
+    #Drive right for specified amount of seconds
+    def packetRight(self, power):
+        leftCurrent = int(power * .75)
+        rightCurrent = int(power)
+        leftPacket = self.pack(leftCurrent)
+        rightPacket = self.pack(rightCurrent)
+        self.leftPort.write(leftPacket)
+        self.rightPort.write(rightPacket)
+        self.leftPort.flush()
+        self.rightPort.flush()
+
+    #Drive left for specified amount of seconds
+    def packetLeft(self, power):
+        leftCurrent = int(-(power * .75))
+        rightCurrent = int(-power)
+        leftPacket = self.pack(leftCurrent)
+        rightPacket = self.pack(rightCurrent)
+        self.leftPort.write(leftPacket)
+        self.rightPort.write(rightPacket)
+        self.leftPort.flush()
+        self.rightPort.flush()

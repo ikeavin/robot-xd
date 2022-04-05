@@ -48,10 +48,10 @@ class VESCMotors:
         self.zeroCurrent()
         
     #Drive forward for specified amount of seconds
-    def driveForward(self, seconds):
+    def driveForward(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = -80000
+            leftCurrent = -power
             rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
@@ -62,10 +62,10 @@ class VESCMotors:
         self.zeroCurrent()
 
     #Drive backward for specified amount of seconds
-    def driveBackward(self, seconds):
+    def driveBackward(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = 80000
+            leftCurrent = power
             rightCurrent = -1 * leftCurrent
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
@@ -76,11 +76,11 @@ class VESCMotors:
         self.zeroCurrent()
 
     #Drive right for specified amount of seconds
-    def driveRight(self, seconds):
+    def driveRight(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = 80000
-            rightCurrent = 60000
+            leftCurrent = power * .75
+            rightCurrent = power
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)
@@ -90,11 +90,11 @@ class VESCMotors:
         self.zeroCurrent()
 
     #Drive left for specified amount of seconds
-    def driveLeft(self, seconds):
+    def driveLeft(self, seconds, power):
         endTime = time.time()
         while time.time() < endTime + seconds:
-            leftCurrent = -60000
-            rightCurrent = -80000
+            leftCurrent = -(power * .75)
+            rightCurrent = -power
             leftPacket = self.pack(leftCurrent)
             rightPacket = self.pack(rightCurrent)
             self.leftPort.write(leftPacket)

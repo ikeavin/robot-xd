@@ -1,0 +1,12 @@
+STATES
+Greet
+Walk
+Bake
+
+VALUES
+health 5
+anger 6
+
+TRANSITIONS
+START -> Greet
+Greet -> Walk

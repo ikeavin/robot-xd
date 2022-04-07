@@ -1,12 +1,8 @@
 STATES
-Greet
-Walk
-Bake
+Sound
 
 VALUES
 health 5
-anger 6
 
 TRANSITIONS
-START -> Greet
-Greet -> Walk
+START -> Sound

@@ -1,22 +1,10 @@
 from Motor import VESCMotors
 
 motor = VESCMotors() 
-print("10k")
-motor.driveForward(2, 10000)
-print("20k")
-motor.driveForward(2, 20000)
-print("30k")
-motor.driveForward(2, 30000)
-print("40k")
-motor.driveForward(2, 40000)
-print("50k")
-motor.driveForward(2, 50000)
-print("60k")
-motor.driveForward(2, 60000)
-print("70k")
-motor.driveForward(2, 80000)
-print("80k")
-motor.driveForward(2, 30000)
+for x in range (1, 20):
+    print(str(x) + "0k")
+    motor.driveForward(2, 10000 * x)
+
 motor.zeroCurrentForSeconds(2)
 motor.driveRight(5, 80000)
 motor.zeroCurrentForSeconds(2)
